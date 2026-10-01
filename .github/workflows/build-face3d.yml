@@ -1,0 +1,41 @@
+name: Build Face3D APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ face3d-build ]
+    paths:
+      - 'face3d/**'
+      - '.github/workflows/build-face3d.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java 17
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Download Gradle 8.9
+        run: |
+          wget -q https://services.gradle.org/distributions/gradle-8.9-bin.zip -O /tmp/gradle.zip
+          unzip -q /tmp/gradle.zip -d /tmp
+
+      - name: Build APK
+        working-directory: face3d
+        run: /tmp/gradle-8.9/bin/gradle --no-daemon :app:assembleDebug
+
+      - name: Prepare APK
+        run: cp face3d/app/build/outputs/apk/debug/app-debug.apk Face3DCreator.apk
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Face3DCreator-APK
+          path: Face3DCreator.apk
+          if-no-files-found: error
