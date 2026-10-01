@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:padding="20dp">
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="Face 3D Creator" android:textSize="28sp"
+        android:textStyle="bold" android:gravity="center"/>
+
+    <ImageView android:id="@+id/preview" android:layout_width="match_parent"
+        android:layout_height="360dp" android:layout_marginTop="20dp"
+        android:scaleType="centerCrop" android:background="#222222"/>
+
+    <Button android:id="@+id/selectButton" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:layout_marginTop="20dp"
+        android:text="Selectează fotografia"/>
+
+    <Button android:id="@+id/generateButton" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:text="Generează model 3D"
+        android:enabled="false"/>
+
+    <TextView android:id="@+id/status" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:layout_marginTop="16dp"
+        android:text="Încarcă o fotografie pentru a începe."
+        android:gravity="center"/>
+</LinearLayout>
