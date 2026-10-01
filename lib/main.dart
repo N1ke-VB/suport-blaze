@@ -42,7 +42,6 @@ class _FaceMatchPageState extends State<FaceMatchPage> {
   XFile? _documentImage;
   XFile? _selfieImage;
   Float32List? _documentEmbedding;
-  Float32List? _selfieEmbedding;
 
   bool _loading = false;
   String _status = 'Scanează întâi permisul.';
@@ -107,7 +106,6 @@ class _FaceMatchPageState extends State<FaceMatchPage> {
         _documentImage = image;
         _documentEmbedding = embedding;
         _selfieImage = null;
-        _selfieEmbedding = null;
         _similarity = null;
         _status = 'Permisul este pregătit. Acum fă selfie-ul.';
       });
@@ -139,7 +137,6 @@ class _FaceMatchPageState extends State<FaceMatchPage> {
 
       setState(() {
         _selfieImage = image;
-        _selfieEmbedding = embedding;
         _similarity = similarity;
         _status = similarity >= _matchThreshold
             ? 'Fața este compatibilă cu fotografia documentului.'
@@ -168,7 +165,6 @@ class _FaceMatchPageState extends State<FaceMatchPage> {
       _documentImage = null;
       _selfieImage = null;
       _documentEmbedding = null;
-      _selfieEmbedding = null;
       _similarity = null;
       _status = 'Scanează întâi permisul.';
     });
